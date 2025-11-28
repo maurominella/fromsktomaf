@@ -1,8 +1,8 @@
 # --- packages ---
 import os, asyncio
 import os
-from semantic_kernel.agents import AzureResponsesAgent
-from semantic_kernel.functions import kernel_function
+from agent_framework.azure import AzureOpenAIResponsesClient
+from azure.identity import DefaultAzureCredential
 from typing import Annotated
 from dotenv import load_dotenv
 
@@ -22,12 +22,12 @@ class LightsPlugin:
             {"id": 2, "name": "Chandelier", "is_on": False},
         ]
 
-    @kernel_function(name="get_lights", description="Gets all lights and their state")
     def get_state(self) -> Annotated[str, "output string"]:
+        """Gets all lights and their state"""
         return str(self.lights)
 
-    @kernel_function(name="change_state", description="Change light state")
     def change_state(self, id: int, is_on: bool) -> Annotated[str, "output string"]:
+        """Change light state"""
         for light in self.lights:
             if light["id"] == id:
                 light["is_on"] = is_on
@@ -36,7 +36,7 @@ class LightsPlugin:
 
 
 # --- Client ---
-client = AzureResponsesAgent.create_client(
+client = AzureOpenAIResponsesClient(
     endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"), # env variable AZURE_OPENAI_ENDPOINT
     api_key=os.getenv("AZURE_OPENAI_API_KEY"), # env variable AZURE_OPENAI_API_KEY
     deployment_name=os.getenv("AZURE_OPENAI_CHAT_DEPLOYMENT_NAME") # env variable AZURE_OPENAI_RESPONSES_DEPLOYMENT_NAME
@@ -44,22 +44,19 @@ client = AzureResponsesAgent.create_client(
 
 
 # --- Agent ---
-agent = AzureResponsesAgent(
-    client=client,
+plugin = LightsPlugin()
+agent = client.create_agent(
     ai_model_id=os.getenv("AZURE_OPENAI_CHAT_DEPLOYMENT_NAME"), # env variable AZURE_OPENAI_RESPONSES_DEPLOYMENT_NAME
     instructions=agent_instructions,
     name=agent_name,
-    plugins=[LightsPlugin()]
+    tools=[plugin.get_state, plugin.change_state]
 )
 
 # --- Asynchronous invocation ---
-async def run_agent(my_agent:AzureResponsesAgent, question: str) -> str:
-    response = ""
-    async for r in my_agent.invoke(messages=question):
-        # print(r.content)
-        response = r.content
-
-    return response
+async def run_agent(my_agent, question: str) -> str:
+    thread = my_agent.get_new_thread()
+    response = await my_agent.run(messages=question, thread=thread)
+    return response.text
 
 user_inputs = ["Hello", "Please toggle the porch light", "What's the status of all lights?", "Thank you"]
 
