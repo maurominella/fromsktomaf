@@ -1,4 +1,4 @@
-# Semantic Kernel sample for comparison with Microsoft Agent Framework
+# Microsoft Agent Framework Sample
 
 ## UV Installation
 - On Linux / MAC --> `curl -LsSf https://astral.sh/uv/install.sh | sh`
@@ -7,8 +7,8 @@
 ## Steps
 - Create the environment: `uv init sk --python 3.12`.
 - Move into the folder that is automatically created: `cd sk`.
-- Add libraries: `uv add semantic-kernel python-dotenv jupyter`.
-- Syncrhonize to create the file structure: `uv sync`.
+- Add libraries: `uv add --pre agent-framework python-dotenv jupyter`.
+- Synchronize to create the file structure: `uv sync`.
 - Activate the environment:
   - on Linux/MC --> `source .venv/bin/activate`.
   - on Windows --> `.\.venv\Scripts\activate.ps1`.

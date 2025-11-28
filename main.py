@@ -1,14 +1,12 @@
 # --- packages ---
 import os, asyncio
-import os
 from agent_framework.azure import AzureOpenAIResponsesClient
-from azure.identity import DefaultAzureCredential
 from typing import Annotated
 from dotenv import load_dotenv
 
 # --- Variables ---
 if not load_dotenv("./../config/credentials_my.env"):
-    print("Environment variables not loaded, execution stopped")
+    print("Environment variables not loaded, execution stopped")  # noqa: T201
     exit(1)
 agent_instructions="You are a clever agent"
 agent_name="my_response_agent"
@@ -61,6 +59,6 @@ async def run_agent(my_agent, question: str) -> str:
 user_inputs = ["Hello", "Please toggle the porch light", "What's the status of all lights?", "Thank you"]
 
 for question in user_inputs:
-    print(f"******\nUser: {question}")
+    print(f"******\nUser: {question}")  # noqa: T201
     answer = asyncio.run(run_agent(agent, question))
-    print(f"\nAnswer: {answer}\n\n")
+    print(f"\nAnswer: {answer}\n\n")  # noqa: T201
