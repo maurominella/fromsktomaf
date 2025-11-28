@@ -12,7 +12,7 @@ agent_instructions="You are a clever agent"
 agent_name="my_response_agent"
 
 # --- Plugin ---
-class LightsPlugin:
+class LightsTool:
     def __init__(self):
         self.lights = [
             {"id": 0, "name": "Table Lamp", "is_on": False},
@@ -37,12 +37,13 @@ class LightsPlugin:
 client = AzureOpenAIResponsesClient(
     endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"), # env variable AZURE_OPENAI_ENDPOINT
     api_key=os.getenv("AZURE_OPENAI_API_KEY"), # env variable AZURE_OPENAI_API_KEY
-    deployment_name=os.getenv("AZURE_OPENAI_CHAT_DEPLOYMENT_NAME") # env variable AZURE_OPENAI_RESPONSES_DEPLOYMENT_NAME
+    deployment_name="gpt-4o", # os.getenv("AZURE_OPENAI_CHAT_DEPLOYMENT_NAME") # env variable AZURE_OPENAI_RESPONSES_DEPLOYMENT_NAME
+    api_version="v1"
 )
 
 
 # --- Agent ---
-plugin = LightsPlugin()
+plugin = LightsTool()
 agent = client.create_agent(
     ai_model_id=os.getenv("AZURE_OPENAI_CHAT_DEPLOYMENT_NAME"), # env variable AZURE_OPENAI_RESPONSES_DEPLOYMENT_NAME
     instructions=agent_instructions,
