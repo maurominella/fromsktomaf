@@ -38,7 +38,7 @@ client = AzureOpenAIResponsesClient(
     endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"), # env variable AZURE_OPENAI_ENDPOINT
     api_key=os.getenv("AZURE_OPENAI_API_KEY"), # env variable AZURE_OPENAI_API_KEY
     deployment_name="gpt-4o", # os.getenv("AZURE_OPENAI_CHAT_DEPLOYMENT_NAME") # env variable AZURE_OPENAI_RESPONSES_DEPLOYMENT_NAME
-    api_version="v1"
+    api_version=os.getenv("AZURE_OPENAI_RESPONSES_API_VERSION") # v1
 )
 
 
@@ -54,7 +54,8 @@ agent = client.create_agent(
 thread = agent.get_new_thread()
 
 # --- Asynchronous invocation ---
-async def run_agent(my_agent, question: str) -> str:    
+async def run_agent(my_agent, question: str) -> str:  
+    global thread  
     response = await my_agent.run(messages=question, thread=thread)
     return response.text
 
