@@ -33,7 +33,7 @@ It uses the **Microsoft Agent Framework** to create an agent that relies on the 
 - Then, it uses the client to create the agent.
 - Bonus demo: it engages *AssistantApi* tools like **Function Tools** and **CodeInterpreter**.
 
-# To switch GitHub repository
+## To switch GitHub repository
 - Make sure that all changes in the current repo are committed and pushed to GitHub
 - Switch to the other repository:
   - Semantic Kernel: `git checkout main`
