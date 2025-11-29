@@ -33,6 +33,19 @@ It uses the **Microsoft Agent Framework** to create an agent that relies on the 
 - Then, it uses the client to create the agent.
 - Bonus demo: it engages *AssistantApi* tools like **Function Tools** and **CodeInterpreter**.
 
+# WTo switch GitHub repository
+- Make sure that all changes in the current repo are committed and pushed to GitHub
+- Switch to the other repository:
+  - Semantic Kernel: `git checkout main`
+  - Microsoft Agent Framework: `git checkout appmod/python-semantic-kernel-to-agent-framework-20251128174805`
+- Activate the environment
+  - Semantic Kernel:
+    - Windows: `.\.venv-sk\Scripts\activate`
+    - Linux: `source .venv-sk/bin/activate`
+  - Microsoft Agent Framework:
+    - Windows: `.\.venv-agent\Scripts\activate`
+    - Linux: `source .venv-agent/bin/activate`
+
 ## Reference docs
 - [Azure AI Foundry Agents](https://learn.microsoft.com/en-us/agent-framework/user-guide/agents/agent-types/azure-ai-foundry-agent?pivots=programming-language-python)
 - This sample adopts [Azure OpenAI APIs next generation v1](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/api-version-lifecycle?view=foundry-classic&tabs=python#api-evolution)
