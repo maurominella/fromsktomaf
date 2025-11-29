@@ -40,7 +40,7 @@ client = AzureResponsesAgent.create_client(
     endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"), # env variable AZURE_OPENAI_ENDPOINT
     api_key=os.getenv("AZURE_OPENAI_API_KEY"), # env variable AZURE_OPENAI_API_KEY
     deployment_name=os.getenv("AZURE_OPENAI_CHAT_DEPLOYMENT_NAME"), # env variable AZURE_OPENAI_RESPONSES_DEPLOYMENT_NAME
-    api_version=os.getenv("AZURE_OPENAI_API_VERSION") # env variable AZURE_OPENAI_RESPONSES_API_VERSION
+    api_version=os.getenv("AZURE_OPENAI_API_VERSION") # v1 does not work for SK version of responses
 )
 
 
