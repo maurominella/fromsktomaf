@@ -52,11 +52,17 @@ agent = AzureResponsesAgent(
     plugins=[LightsPlugin()]
 )
 
+from semantic_kernel.agents import ResponsesAgentThread
+thread:ResponsesAgentThread = None
+
+
 # --- Asynchronous invocation ---
 async def run_agent(my_agent:AzureResponsesAgent, question: str) -> str:
+    global thread
     response = ""
-    async for r in my_agent.invoke(messages=question):
+    async for r in my_agent.invoke(messages=question, thread=thread):
         # print(r.content)
+        thread = r.thread
         response = r.content
 
     return response
