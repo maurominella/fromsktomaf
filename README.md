@@ -38,6 +38,7 @@ It uses the **Microsoft Agent Framework** to create an agent that relies on the 
 - Switch to the other repository:
   - Semantic Kernel: `git checkout main`
   - Microsoft Agent Framework: `git checkout appmod/python-semantic-kernel-to-agent-framework-20251128174805`
+- DE-Activate the previous environment: `deactivate`
 - Activate the environment
   - Semantic Kernel:
     - Windows: `.\.venv-sk\Scripts\activate`
