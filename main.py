@@ -61,7 +61,7 @@ async def run_agent(my_agent:AzureResponsesAgent, question: str) -> str:
 
     return response
 
-user_inputs = ["Hello", "Please toggle the porch light", "What's the status of all lights?", "Thank you"]
+user_inputs = ["Hello", "Please toggle the porch light", "What's the status of all lights?", "What was my last question?", "Thank you"]
 
 for question in user_inputs:
     print(f"******\nUser: {question}")
