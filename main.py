@@ -51,13 +51,14 @@ agent = client.create_agent(
     tools=[plugin.get_state, plugin.change_state]
 )
 
+thread = agent.get_new_thread()
+
 # --- Asynchronous invocation ---
-async def run_agent(my_agent, question: str) -> str:
-    thread = my_agent.get_new_thread()
+async def run_agent(my_agent, question: str) -> str:    
     response = await my_agent.run(messages=question, thread=thread)
     return response.text
 
-user_inputs = ["Hello", "Please toggle the porch light", "What's the status of all lights?", "Thank you"]
+user_inputs = ["Hello", "Please toggle the porch light", "What's the status of all lights?", "What was my previous question?", "Thank you"]
 
 for question in user_inputs:
     print(f"******\nUser: {question}")  # noqa: T201
