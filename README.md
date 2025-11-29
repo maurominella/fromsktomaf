@@ -14,8 +14,13 @@
   - if you used a folder name after `uv`, that folder would be created
   - this will create `project.toml` file in the roow
 - Activate the environment
-  - Windows: `.\.venv-sk\Scripts\activate`
-  - Linux: `source .venv-agent/bin/activate`
+  - Semantic Kernel:
+    - Windows: `.\.venv-sk\Scripts\activate`
+    - Linux: `source .venv-sk/bin/activate`
+  - Microsoft Agent Framework:
+    - Windows: `.\.venv-agent\Scripts\activate`
+    - Linux: `source .venv-agent/bin/activate`
+- Synchronize to create the file structure: `uv sync`
 - Add the packages: 
   - Semantic Kernel: `(.venv-sk)` PS > `uv add semantic-kernel python-dotenv --active`
   - Microsoft Agent Framework: `(.venv-agent`) PS > `uv add --pre agent-framework python-dotenv --active`
