@@ -20,7 +20,7 @@
   - Microsoft Agent Framework:
     - Windows: `.\.venv-agent\Scripts\activate`
     - Linux: `source .venv-agent/bin/activate`
-- Synchronize to create the file structure: `uv sync`
+- Synchronize to create the file structure: `uv sync --active`
 - Add the packages: 
   - Semantic Kernel: `(.venv-sk)` PS > `uv add semantic-kernel python-dotenv --active`
   - Microsoft Agent Framework: `(.venv-agent`) PS > `uv add --pre agent-framework python-dotenv --active`
